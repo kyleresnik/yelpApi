@@ -18,9 +18,8 @@ export class DataService {
 
   constructor(private _http: HttpClient) { }
 
-  fetchYelp(search): Observable<any> {
-    console.log(search)
+  fetchYelp(city, price): Observable<any> {
     return this._http.get(
-      `https://cors-anywhere.herokuapp.com/${this.yelpUrl}?term=restaurants&location=${city},${state}&price=${price}`, httpOptions)
+      `https://cors-anywhere.herokuapp.com/${this.yelpUrl}?term=restaurants&location=${city}&price=${price}`, httpOptions)
   }
 }

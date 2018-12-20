@@ -8,10 +8,11 @@ import { DataService } from '../data.service'
   styleUrls: ['./yelp-display.component.css']
 })
 export class YelpDisplayComponent implements OnInit {
-  displayForm: FormGroup;
-  public result: any[];
-  city: string;
-  state: string;
+  displayForm = new FormGroup({
+    city: new FormControl(),
+    price: new FormControl()
+  })
+  result: any;
 
   constructor(
     private fb: FormBuilder,
@@ -19,16 +20,15 @@ export class YelpDisplayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.displayForm = this.fb.group({
-      price: new FormControl(),
-      city: new FormControl(),
-      state: new FormControl()
-    })
+    // this.displayForm = this.fb.group({
+    //   price: new FormControl(),
+    //   city: new FormControl()
+    // })
   }
 
   submitSearch(): void {
-    this.ds.fetchYelp(this.displayForm).subscribe(
-      res => { console.log(res), this.result = res.businesses.city.value})
+    this.ds.fetchYelp(this.displayForm.value.city, this.displayForm.value.price).subscribe(
+      res => { console.log(res), this.result = res.businesses[0].city.value})
   }
 
 }
