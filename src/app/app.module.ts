@@ -1,16 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { YelpDisplayComponent } from './yelp-display/yelp-display.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    YelpDisplayComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
