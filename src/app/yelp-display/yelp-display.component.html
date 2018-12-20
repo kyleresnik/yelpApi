@@ -1,31 +1,51 @@
-<h1>Yelp API Assessment</h1>
-<form [formGroup]="displayForm" (ngSubmit)="submitSearch(yelp)">
-  <label>Price: </label>
-    <select placeholder="Select">
-      <option value=1>$</option>
-      <option value=2>$$</option>
-      <option value=3>$$$</option>
-      <option value=4>$$$$</option>
-      <option value=5>$$$$$</option>
-    </select>
-    <br>
-    <br>
-  <!-- <select formControlName="price" required>
-    <option *ngFor="let p of price" value="{{ p.value }}">{{ p.view }}</option>
-  </select> -->
-  <label>Enter City: </label>
-    <input formControlName="city" required>
-  <label>Enter State: </label>
-    <!-- <input formControlName="state" required> -->
-  <button type="submit">Submit</button>
-</form>
-
-<div>
-  <div *ngIf="result !== undefined">
-    <h1>{{ result.name }}</h1>
-    <h4>{{ result.location.display_address }} </h4>
-    <p>{{ result.display_phone }}</p>
-    <p>{{ delivers }}</p>
-    <p>{{ rating }}</p>
+<div style="text-align:center">
+    <br />
+    <h1>Yelp API Assessment</h1>
+    <div class="container">
+      <form [formGroup]="displayForm" >  
+        <hr>
+        <select placeholder="Select" formControlName="price">
+          <option value='1'>$</option>
+          <option value='2'>$$</option>
+          <option value='3'>$$$</option>
+          <option value='4'>$$$$</option>
+        </select>
+        <input placeholder="city" formControlName="city">
+        <button type='submit' (click)='submitSearch()'>Submit</button>
+      </form>
+    </div>
+    <br /> <br />
+    <div *ngIf='result'>
+      <div class="card">
+        <div class="cardContainer">
+          <h1>{{ result.name }}</h1>
+          <p><i> {{ result.location.address1 }} </i></p>
+          <img class="image" src="{{ result.image_url }}" />
+          <p>Phone Number: {{ result.phone }}</p>
+          <p>Order Types: {{ delivery }} </p>
+          <h5>Price: {{result.price}} </h5>
+          <!-- <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_0.png" *ngIf="restaurants.rating === 0">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_1.png" *ngIf="restaurants.rating === 1">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_1_half.png" *ngIf="restaurants.rating === 1.5">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_2.png" *ngIf="restaurants.rating === 2">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_2_half.png" *ngIf="restaurants.rating === 2.5">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_3.png" *ngIf="restaurants.rating === 3">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_3_half.png" *ngIf="restaurants.rating === 3.5">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_4.png" *ngIf="restaurants.rating === 4">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_4_half.png" *ngIf="restaurants.rating === 4.5">
+          </p>
+          <p><img src="../assets/yelp_stars/web_and_ios/extra_large/extra_large_5.png" *ngIf="restaurants.rating === 5">
+          </p> -->
+          <br />
+        </div>
+      </div>
+    </div>
   </div>
-</div>

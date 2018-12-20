@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from '../data.service'
 
 @Component({
@@ -15,7 +15,6 @@ export class YelpDisplayComponent implements OnInit {
   result: any;
 
   constructor(
-    private fb: FormBuilder,
     private ds: DataService
   ) { }
 
@@ -28,7 +27,7 @@ export class YelpDisplayComponent implements OnInit {
 
   submitSearch(): void {
     this.ds.fetchYelp(this.displayForm.value.city, this.displayForm.value.price).subscribe(
-      res => { console.log(res), this.result = res.businesses[0].city.value})
+      res => { console.log(res), this.result = res.businesses[Math.floor(Math.random()*res.businesses.length)]})
   }
 
 }
